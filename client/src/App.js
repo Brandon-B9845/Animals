@@ -2,15 +2,21 @@
 import './App.css';
 
 function App() {
+  
+  async function handleClick(){
+    let results = await fetch('http://localhost:9000/other')
+    console.log(await results.json())
+  }
+  
   return (
     <div className="App">
-      <p>What if god was one of us?</p>
-      <ul>
-        <li>a dog like one of us?</li>
-        <li>some frogs like one of us?</li>
-        <li>on a log like one of us?</li>
-      </ul>
-      <h1>THERES A HOLE IN THE BOTTOM OF THE SEA</h1>
+      <header>
+        <div>
+          <button onClick={handleClick} >Click me</button>
+        </div>
+
+      </header>
+      
     </div>
   );
 }
