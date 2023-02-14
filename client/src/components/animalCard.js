@@ -15,7 +15,7 @@ function Card(props) {
             <p>{props.plot}holder</p>
             <p>{props.runtime}holder</p>
             <p>{props.rating}holder</p>
-            <button id="info-btn" onClick={handleClick}>More details...</button>
+            <button className="info-btn" onClick={handleClick}>More details...</button>
 
         </div>
 
