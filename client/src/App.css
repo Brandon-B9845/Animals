@@ -8,14 +8,16 @@
 }   
 
 .header-title {
-    font-family: 'Karla';
+    font-family:Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
-    letter-spacing: -0.1em;
     color: #FFFFFF;
     margin-right: auto;
+    width: auto;
+
+
   
   }
 
@@ -25,19 +27,16 @@
     padding-right: 7px;
 }
 
-.nav-btn-container{
-    padding:15px;
+
+.nav {
+   padding: 15px;
+   list-style-type: none;
+   text-align: center;
 }
 
-.nav-btn {
-   
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: right;
-    color: #FFFFFF;
-    margin: 0 10px;
+.nav li {
+    display: inline;
+    padding: 0 20px;
 }
 
 .card-container{
