@@ -1,4 +1,4 @@
-
+import AnimalCard from './components/animalCard';
 import './App.css';
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
     <div className="App">
       <header>
         <div>
+          <AnimalCard />
           <button onClick={handleClick} >Click me</button>
         </div>
 
