@@ -44,7 +44,7 @@ function Pokemon(sequelize, DataTypes) {
         against_normal: {
             type: DataTypes.FLOAT
         },
-        against_poisonk: {
+        against_poison: {
             type: DataTypes.FLOAT
         },
         against_psychic: {
@@ -100,9 +100,7 @@ function Pokemon(sequelize, DataTypes) {
         },
         pokedex_number: {
             type: DataTypes.INTEGER,
-            allowNull: false,
             primaryKey: true
-            
         },
         sp_attack: {
             type: DataTypes.INTEGER
