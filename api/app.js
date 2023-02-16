@@ -9,7 +9,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var otherRouter = require('./routes/other')
-var usersRouter = require('./routes/users');
+var pokemonRouter = require('./routes/pokemon');
 const { normalize } = require('path');
 
 var app = express();
@@ -28,7 +28,7 @@ app.use(cors());
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/pokemon', pokemonRouter);
 app.use('/other', otherRouter);
 
 // catch 404 and forward to error handler

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Card from './components/animalCard';
+import Card from './components/PokeCard';
 import NavBar from './components/NavBar';
 import './App.css';
 
