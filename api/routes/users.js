@@ -3,8 +3,16 @@ const db = require('../models');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  console.log(db)
+router.get('/', async function(req, res, next) {
+  let poke = await db.Pokemon.findAll({
+    where: {
+      pokedex_number: 3
+    }
+  })
+
+  console.log('dun found it')
+  console.log(poke[0].dataValues)
+
   res.send('respond with a resource');
 });
 

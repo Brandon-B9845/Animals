@@ -6,19 +6,6 @@ const csv = require('csv-parser')
 const { parse } = require("csv-parse")
 const db = require('../models')
 
-
-
-// function pleaseWork(){
-//   const results = []
-//   fs.createReadStream('pokemon.csv')
-//   .pipe(csv({}))
-//   .on('data', (data) => results.push(data))
-//   .on('end', () => {
-//     console.log(results)
-//   })
-
-// }
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up(queryInterface, Sequelize) {
@@ -86,19 +73,6 @@ module.exports = {
       ));
     })
 
-
-
-
-
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
   },
 
   async down(queryInterface, Sequelize) {
