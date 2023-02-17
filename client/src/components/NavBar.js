@@ -7,11 +7,11 @@ function NavBar(props) {
         <div>
             <header className="main-header">
                 <img className="header-img" src={process.env.PUBLIC_URL + 'turkey.jpeg.png'} alt="a turkey" />
-                <h2 className="header-title">Turkish Movie Central</h2>
+                <h2 className="header-title">Poke-mans</h2>
                 <ul className="nav">
                     <li><a href="temporary">Home</a></li>
-                    <li><a href="temporary">Random Movie!</a></li>
-                    <li><a href="https://www.facebook.com/">About Us</a></li>
+                    <li><a href="temporary">Random pokemon!</a></li>
+                    <li><a href="h123">About Us</a></li>
                 </ul>
             </header>
         </div>
