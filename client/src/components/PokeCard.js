@@ -6,13 +6,14 @@ function Card(props) {
 
     return (
         <div className="card-container">
-            <img src={props.picture} alt="Movie Poster" />
-            <p>{props.name}</p>
-            <p>{props.gender}</p>
-            <p>{props.email}</p>
-            <p>{props.date}</p>
-            <p>{props.phone}</p>
-            <button className="info-btn" onClick={console.log('nah')}>More details...</button>
+            <img src={props.picture} alt="Pokemon" />
+            <p>Name: {props.name}</p>
+            <p>Pokedex number: {props.pokedex}</p>
+            <p>Type: {props.type}</p>
+            <p>Attack: {props.attack}</p>
+            <p>Defense: {props.defense}</p>
+            <p>Generation: {props.gen}</p>
+            <button className="info-btn">More details...</button>
 
         </div>
 
