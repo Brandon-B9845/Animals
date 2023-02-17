@@ -7,12 +7,15 @@ import './App.css';
 function App() {
 
   const [pokemon, setPokemon] = useState([])
+  const [pageCount, setPageCount] = useState(0)
 
   useEffect(() => {
-    console.log(pokemon)
-  }, []);
+    console.log("i have changed")
+
+  }, [pokemon, pageCount]);
   
   async function handleClick() {
+    
     const options = {
       method: 'POST',
       headers: {
@@ -21,7 +24,7 @@ function App() {
           // 'X-RapidAPI-Key': ''
           // 'Access-Control-Allow-Origin': '*'
       },
-      body: "{'language':'en','strength':3,'text':'Hey! Let's learn something together.'}"
+      body: JSON.stringify({'page-number':  pageCount})
     }
   
     
@@ -44,9 +47,28 @@ function findPicture(pokedex_number){
 async function leggyBoyos(){
   let results = await fetch('http://localhost:3000/pokemon/legendary')
   let returnPokemon = await results.json()
-  console.log(returnPokemon)
+  console.log(returnPokemon)  
   setPokemon(returnPokemon)
 }
+
+
+
+function previous() {
+  if(pageCount > 0){
+    handleClick()
+    setPageCount(prevVal => prevVal - 1)
+  }
+    
+   
+}
+
+function next() {
+  handleClick()
+  setPageCount(prevVal => prevVal + 1)
+  
+}
+
+// handleClick()
 
   return (
     <div className="App">
@@ -55,6 +77,9 @@ async function leggyBoyos(){
           <NavBar />
           <button onClick={leggyBoyos}>AHHHH</button>
           <button onClick={handleClick} >Click me</button>
+          <button onClick={previous}>Previous</button>
+          <button onClick={next}>Next</button>
+          <p>You are on page {pageCount}</p>
           <div className="wrapper">
           {pokemon ? pokemon.map((poke) => <Card key={poke.pokedex_number} picture={poke.pokedex_number < 494 ?  `https://serebii.net/pokearth/sprites/dp/${findPicture(poke.pokedex_number)}.png` : `https://www.serebii.net/swordshield/pokemon/${poke.pokedex_number}.png`} name={poke.name} type={poke.type1} attack={poke.attack} defense={poke.defense}gen={poke.generation} pokedex={poke.pokedex_number} />) : <p>Click the button</p>}
           </div>

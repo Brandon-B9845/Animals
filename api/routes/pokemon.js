@@ -20,11 +20,18 @@ router.get('/legendary', async function(req, res, next) {
 });
 
 router.post('/*', async function(req, res, next) {
+  let pageNumber = JSON.parse(Object.keys(req.body)[0])['page-number']
+  let offSetNumber=  pageNumber * 25
+  
   const test = await db.Pokemon.findAll({
-    limit: 25 
+    limit: 25,
+    offset: offSetNumber
   })
    res.send(test)
-   console.log(req.body, "here")
+  
+  
+   //  console.log(JSON.parse(Object.keys(req.body)[0])['page-number'])
+   
 });
 
 module.exports = router;
