@@ -14,9 +14,9 @@ function App() {
 
   }, [pokemon, pageCount]);
   
-  async function handleClick() {
+  async function handleClick(num) {
     
-    const options = {
+    let options = {
       method: 'POST',
       headers: {
           'Content-type': 'application/x-www-form-urlencoded',
@@ -24,7 +24,7 @@ function App() {
           // 'X-RapidAPI-Key': ''
           // 'Access-Control-Allow-Origin': '*'
       },
-      body: JSON.stringify({'page-number':  pageCount})
+      body: JSON.stringify({'page-number':  num})
     }
   
     
@@ -55,7 +55,7 @@ async function leggyBoyos(){
 
 function previous() {
   if(pageCount > 0){
-    handleClick()
+    handleClick(pageCount - 1)
     setPageCount(prevVal => prevVal - 1)
   }
     
@@ -63,7 +63,8 @@ function previous() {
 }
 
 function next() {
-  handleClick()
+  handleClick(pageCount + 1)
+
   setPageCount(prevVal => prevVal + 1)
   
 }
