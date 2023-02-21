@@ -6,6 +6,10 @@ import Dropdown from './components/Dropdown';
 import UsePokemon from './hooks/UsePokemon';
 import UseLegendaries from './hooks/UseLegendaries';
 import UseAttackDesc from './hooks/UseAttackDesc';
+import UseAttackAsc from './hooks/UseAttackAsc';
+import UseDefenseDesc from './hooks/UseDefenseDesc';
+import UseDefenseAsc from './hooks/UseDefenseAsc';
+
 
 import './App.css';
 
@@ -18,6 +22,9 @@ function App() {
   const { pokemon } = UsePokemon(pageCount);
   const { legendaries } = UseLegendaries(pageCount);
   const { attackDesc } = UseAttackDesc(pageCount)
+  const { attackAsc } =UseAttackAsc(pageCount)
+  const { defenseDesc } =UseDefenseDesc(pageCount)
+  const { defenseAsc } =UseDefenseAsc(pageCount)
 
   let display = pokemon
   // this will be for the dropdown box to allow filtering:
@@ -26,6 +33,9 @@ function App() {
     { label: 'Pokedex Number', value: 'Pokedex Number' },
     { label: 'Legendaries', value: 'Legendaries' },
     {label: 'Attack: High to Low', value: 'Attack: High to Low'},
+    {label: 'Attack: Low to High', value: 'Attack: Low to High'},
+    {label: 'Defense: High to Low', value: 'Defense: High to Low'},
+    {label: 'Defense: Low to High', value: 'Defense: Low to High'}
   ];
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -37,6 +47,12 @@ function App() {
     display = legendaries
   }else if (value === 'Attack: High to Low'){
     display = attackDesc
+  }else if (value === 'Attack: Low to High'){
+    display = attackAsc
+  }else if (value === 'Defense: High to Low'){
+    display = defenseDesc
+  }else if (value === 'Defense: Low to High'){
+    display = defenseAsc
   }
   console.log(value)
 
