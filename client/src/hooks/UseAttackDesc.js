@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
 
-const UseLegendaries = (num) => {
-    const [legendaries, setLegendaries] = useState([])
+const UseAttackDesc = (num) => {
+    const [attackDesc, setAttackDesc] = useState([])
 
 
     let options = {
@@ -15,23 +15,22 @@ const UseLegendaries = (num) => {
       },
       body: JSON.stringify({'page-number':  num})
     }
-    const fetchLegendaries = async () => {
-      const results = await fetch('http://localhost:3000/pokemon/legendary', options)
+    const fetchAttackDesc = async () => {
+      const results = await fetch('http://localhost:3000/pokemon/attack_desc', options)
       let returnPokemon = await results.json()
-      setLegendaries(returnPokemon)
+      setAttackDesc(returnPokemon)
     }
-      
- 
+    
 
     useEffect(() => {
-        fetchLegendaries()
+      fetchAttackDesc()
     }, [num])
+    
+   
 
-
-
-   return { legendaries }
+   return { attackDesc }
   
     
 }
 
-export default UseLegendaries 
+export default UseAttackDesc

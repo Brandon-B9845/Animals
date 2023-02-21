@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import Card from './components/PokeCard';
 import NavBar from './components/NavBar';
 import Button from './components/Button';
+import Dropdown from './components/Dropdown';
 import UsePokemon from './hooks/UsePokemon';
 import UseLegendaries from './hooks/UseLegendaries';
-import Dropdown from './components/Dropdown';
+import UseAttackDesc from './hooks/UseAttackDesc';
+
 import './App.css';
 
 
@@ -15,19 +17,28 @@ function App() {
   // these are the returns from our hooks to tell the app what to display:
   const { pokemon } = UsePokemon(pageCount);
   const { legendaries } = UseLegendaries(pageCount);
+  const { attackDesc } = UseAttackDesc(pageCount)
 
   let display = pokemon
-
   // this will be for the dropdown box to allow filtering:
-  function getValue(val){
-    if (val === 'By number'){
-      return display = pokemon
-    }
-    else if (val === 'Legendaries'){
-      return display = legendaries
-    } 
+  const [value, setValue] = useState("")
+  const options = [
+    { label: 'Pokedex Number', value: 'Pokedex Number' },
+    { label: 'Legendaries', value: 'Legendaries' },
+    {label: 'Attack: High to Low', value: 'Attack: High to Low'},
+  ];
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+  if (value === 'By number'){
+    display = pokemon
   }
-
+  else if (value=== 'Legendaries'){
+    display = legendaries
+  }else if (value === 'Attack: High to Low'){
+    display = attackDesc
+  }
+  console.log(value)
 
   //this is to make sure that the picture url is rendering the correct picture:
   function findPicture(pokedex_number) {
@@ -60,8 +71,8 @@ function App() {
           {/* <button onClick={"i"} >Click me</button> */}
           <Button name="previous-btn" handler={previous} title="Previous" />
           <Button name="next-btn" handler={next} title="Next" />
-          <Dropdown  handler={getValue}/>
-          <p>You are on page {pageCount}</p>
+          <Dropdown  options={options} handleChange={handleChange}/>
+          <p>You are on page {pageCount + 1}</p>
           <div className="wrapper">
             {display ? display.map((poke) => <Card key={poke.pokedex_number} picture={poke.pokedex_number < 494 ? `https://serebii.net/pokearth/sprites/dp/${findPicture(poke.pokedex_number)}.png` : `https://www.serebii.net/swordshield/pokemon/${poke.pokedex_number}.png`} name={poke.name} type={poke.type1} attack={poke.attack} defense={poke.defense} gen={poke.generation} pokedex={poke.pokedex_number} />) : <p>Click the button</p>}
           </div>
