@@ -30,7 +30,7 @@ router.post('/*', async function(req, res, next) {
    res.send(test)
   
   
-   //  console.log(JSON.parse(Object.keys(req.body)[0])['page-number'])
+    console.log(JSON.parse(Object.keys(req.body)[0])['page-number'])
    
 });
 
