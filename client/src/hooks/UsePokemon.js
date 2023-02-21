@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-const HandleClick = async (num) => {
-    const [pokemon, setPokemon] = useState([])
 
+const UsePokemon = (num) => {
+    const [pokemon, setPokemon] = useState([])
 
 
     let options = {
@@ -15,17 +15,21 @@ const HandleClick = async (num) => {
       },
       body: JSON.stringify({'page-number':  num})
     }
-  
+    const fetchPokemon = async () => {
+      const results = await fetch('http://localhost:3000/pokemon', options)
+      let returnPokemon = await results.json()
+      setPokemon(returnPokemon)
+    }
     
-    let results = await fetch('http://localhost:3000/pokemon', options)
-    let returnPokemon = await results.json()
-    console.log(returnPokemon)
-    setPokemon(returnPokemon)
-   const pokeData = pokemon
 
-   return pokeData
+    useEffect(() => {
+      fetchPokemon()
+    }, [num])
+   
+
+   return { pokemon }
   
     
 }
 
-export default HandleClick 
+export default UsePokemon 

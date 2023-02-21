@@ -2,83 +2,45 @@ import { useState, useEffect } from 'react';
 import Card from './components/PokeCard';
 import NavBar from './components/NavBar';
 import Button from './components/Button';
-import HandleClick from './hooks/HandleClick';
+import UsePokemon from './hooks/UsePokemon';
 
 
 import './App.css';
 
 
 function App() {
-
-
-
-  // const [pokemon, setPokemon] = useState([])
   const [pageCount, setPageCount] = useState(0)
+  const { pokemon } = UsePokemon(pageCount);
 
-  useEffect(() => {
-    console.log("i have changed")
-    
+  // async function leggyBoyos(){
+  //   let results = await fetch('http://localhost:3000/pokemon/legendary')
+  //   let returnPokemon = await results.json()
+  //   console.log(returnPokemon)  
+  //   setPokemon(returnPokemon)
+  // }
 
-  }, [ pageCount]);
-  
-//   async function handleClick(num) {
-    
-//     let options = {
-//       method: 'POST',
-//       headers: {
-//           'Content-type': 'application/x-www-form-urlencoded',
-//           // 'X-RapidAPI-Host': 'rewriter-paraphraser-text-changer-multi-language.p.rapidapi.com',
-//           // 'X-RapidAPI-Key': ''
-//           // 'Access-Control-Allow-Origin': '*'
-//       },
-//       body: JSON.stringify({'page-number':  num})
-//     }
-  
-    
-//     let results = await fetch('http://localhost:3000/pokemon', options)
-//     let returnPokemon = await results.json()
-//     console.log(returnPokemon)
-//     setPokemon(returnPokemon)
-    
-// }
-
-
-// async function leggyBoyos(){
-//   let results = await fetch('http://localhost:3000/pokemon/legendary')
-//   let returnPokemon = await results.json()
-//   console.log(returnPokemon)  
-//   setPokemon(returnPokemon)
-// }
-
-function findPicture(pokedex_number){
-  if(pokedex_number < 10){
-    return `00${pokedex_number}`
+  function findPicture(pokedex_number) {
+    if (pokedex_number < 10) {
+      return `00${pokedex_number}`
+    }
+    else if (pokedex_number >= 10 && pokedex_number < 100) {
+      return `0${pokedex_number}`
+    } else return pokedex_number
   }
-  else if (pokedex_number >= 10 && pokedex_number < 100){
-    return`0${pokedex_number}`
-  }else return pokedex_number
-
-} 
 
 
 
-function previous() {
-  if(pageCount > 0){
-    HandleClick(pageCount - 1)
-    setPageCount(prevVal => prevVal - 1)
+  function previous() {
+    if (pageCount > 0) {
+      setPageCount(prevVal => prevVal - 1)
+    }
   }
-    
-   
-}
 
-function next() {
-  HandleClick(pageCount + 1)
+  function next() {
+    setPageCount(prevVal => prevVal + 1)
+  }
 
-  setPageCount(prevVal => prevVal + 1)
-  
-}
-
-// handleClick()
+  // handleClick()
 
   return (
     <div className="App">
@@ -86,12 +48,12 @@ function next() {
         <div>
           <NavBar />
           {/* <button onClick={leggyBoyos}>AHHHH</button> */}
-          <button onClick={HandleClick} >Click me</button>
-          <Button name="previous-btn" handler={previous} title="Previous"/>
+          {/* <button onClick={"i"} >Click me</button> */}
+          <Button name="previous-btn" handler={previous} title="Previous" />
           <Button name="next-btn" handler={next} title="Next" />
           <p>You are on page {pageCount}</p>
           <div className="wrapper">
-          {/* {pokemon ? pokemon.map((poke) => <Card key={poke.pokedex_number} picture={poke.pokedex_number < 494 ?  `https://serebii.net/pokearth/sprites/dp/${findPicture(poke.pokedex_number)}.png` : `https://www.serebii.net/swordshield/pokemon/${poke.pokedex_number}.png`} name={poke.name} type={poke.type1} attack={poke.attack} defense={poke.defense}gen={poke.generation} pokedex={poke.pokedex_number} />) : <p>Click the button</p>} */}
+            {pokemon ? pokemon.map((poke) => <Card key={poke.pokedex_number} picture={poke.pokedex_number < 494 ? `https://serebii.net/pokearth/sprites/dp/${findPicture(poke.pokedex_number)}.png` : `https://www.serebii.net/swordshield/pokemon/${poke.pokedex_number}.png`} name={poke.name} type={poke.type1} attack={poke.attack} defense={poke.defense} gen={poke.generation} pokedex={poke.pokedex_number} />) : <p>Click the button</p>}
           </div>
 
         </div>
