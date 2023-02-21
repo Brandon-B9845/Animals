@@ -9,6 +9,7 @@ import UseAttackDesc from './hooks/UseAttackDesc';
 import UseAttackAsc from './hooks/UseAttackAsc';
 import UseDefenseDesc from './hooks/UseDefenseDesc';
 import UseDefenseAsc from './hooks/UseDefenseAsc';
+import UseType from './hooks/UseType';
 
 
 import './App.css';
@@ -25,6 +26,7 @@ function App() {
   const { attackAsc } =UseAttackAsc(pageCount)
   const { defenseDesc } =UseDefenseDesc(pageCount)
   const { defenseAsc } =UseDefenseAsc(pageCount)
+  const { type } = UseType(pageCount)
 
   let display = pokemon
   // this will be for the dropdown box to allow filtering:
@@ -35,7 +37,8 @@ function App() {
     {label: 'Attack: High to Low', value: 'Attack: High to Low'},
     {label: 'Attack: Low to High', value: 'Attack: Low to High'},
     {label: 'Defense: High to Low', value: 'Defense: High to Low'},
-    {label: 'Defense: Low to High', value: 'Defense: Low to High'}
+    {label: 'Defense: Low to High', value: 'Defense: Low to High'},
+    {label: 'Type', value: 'Type'}
   ];
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -53,6 +56,8 @@ function App() {
     display = defenseDesc
   }else if (value === 'Defense: Low to High'){
     display = defenseAsc
+  }else if (value === 'Type'){
+    display = type
   }
   console.log(value)
 
@@ -74,7 +79,9 @@ function App() {
   }
 
   function next() {
-    setPageCount(prevVal => prevVal + 1)
+    if(pageCount < 32){
+      setPageCount(prevVal => prevVal + 1)
+    }
   }
 
   // This is the actual rendering of the app:
@@ -105,6 +112,3 @@ export default App;
 
 
 
-
-
-// label="What do we eat?"options={options}value={value} onChange={handleChange}

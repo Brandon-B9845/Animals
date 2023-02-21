@@ -79,9 +79,11 @@ router.post('/attack_asc', async function(req, res, next) {
   })
   res.send(test)
  
+
   
   
 });
+
 
 router.post('/legendary', async function(req, res, next) {
   let pageNumber = JSON.parse(Object.keys(req.body)[0])['page-number']
@@ -99,6 +101,25 @@ router.post('/legendary', async function(req, res, next) {
   
   
 });
+
+router.post('/type', async function(req, res, next) {
+  let pageNumber = JSON.parse(Object.keys(req.body)[0])['page-number']
+  let offSetNumber=  pageNumber * 25
+  
+  const test =  await db.Pokemon.findAll({
+    order: [
+      ['type1', 'ASC'],
+
+    ],
+    limit: 25,
+    offset: offSetNumber
+  })
+  res.send(test)
+ 
+  
+  
+});
+
 
 router.post('/*', async function(req, res, next) {
   let pageNumber = JSON.parse(Object.keys(req.body)[0])['page-number']
