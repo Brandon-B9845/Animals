@@ -143,7 +143,7 @@ Button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  position: absolute;
+  position:fixed;
 }
 
 .centered {
@@ -154,10 +154,11 @@ Button {
 }
 
 .modal {
-  width: 250px;
-  height: 170px;
+  width: 800px;
+  height:550px;
   background: white;
   color: white;
+  border: 5px solid rgb(16, 110, 216);
   z-index: 10;
   border-radius: 16px;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);

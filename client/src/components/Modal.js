@@ -14,7 +14,15 @@ function Modal(props) {
                         Close
                     </button>
                     <div className="modalContent">
-                        Are you sure you want to delete the item?
+                        <img src="https://serebii.net/pokearth/sprites/dp/113.png" alt="Pokemon" />
+                        <p>Name: {props.name}</p>
+                        <p>Pokedex number: {props.pokedex}</p>
+                        <p>Type: {props.type}</p>
+                        <p>Attack: {props.attack}</p>
+                        <p>Defense: {props.defense}</p>
+                        <p>Generation: {props.gen}</p>
+                        <p>Stats Against:</p>
+                        <p>Bug:{props.bug}, Dark:{props.dark},Dragon: {props.dragon}, Electricity: {props.electricity}, </p>
                     </div>
                 </div>
             </div>
