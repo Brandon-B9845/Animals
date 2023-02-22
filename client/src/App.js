@@ -11,7 +11,7 @@ import UseAttackAsc from './hooks/UseAttackAsc';
 import UseDefenseDesc from './hooks/UseDefenseDesc';
 import UseDefenseAsc from './hooks/UseDefenseAsc';
 import UseType from './hooks/UseType';
-
+import UseRandom from './hooks/UseRandom';
 
 import './App.css';
 
@@ -19,9 +19,10 @@ import './App.css';
 function App() {
  //Modal State:
   const [isOpen, setIsOpen] = useState(false);
+  const [randomModal, setRandomModal] = useState(false)
 
+  console.log(randomModal)
   function information(obj){
-    console.log(obj)
     setIsOpen(true)
     setThisPokemon(obj)
   }
@@ -38,6 +39,8 @@ function App() {
   const { defenseDesc } =UseDefenseDesc(pageCount)
   const { defenseAsc } =UseDefenseAsc(pageCount)
   const { type } = UseType(pageCount)
+  const { random } = UseRandom()
+  
 
   let display = pokemon
   // this will be for the dropdown box to allow filtering:
@@ -70,7 +73,7 @@ function App() {
   }else if (value === 'Type'){
     display = type
   }
-  
+
 
   //this is to make sure that the picture url is rendering the correct picture:
   function findPicture(pokedex_number) {
@@ -92,17 +95,19 @@ function App() {
   function next() {
     if(pageCount < 32){
       setPageCount(prevVal => prevVal + 1)
+      
     }
   }
 
-
+  //This is for the random button hopefully:
+console.log(random)
 
   // This is the actual rendering of the app:
   return (
     <div className="App">
       <header>
         <div className="btn-container">
-          <NavBar />
+          <NavBar handler={() => setRandomModal(true)}/>
           <div>
           <Button name="previous-btn" handler={previous} title="Previous" />
           <Button name="next-btn" handler={next} title="Next" />
@@ -114,6 +119,7 @@ function App() {
           </div>
           <div className="btn-container">
           {isOpen && <Modal picture={thisPokemon.pokedex_number < 494 ? `https://serebii.net/pokearth/sprites/dp/${findPicture(thisPokemon.pokedex_number)}.png` : `https://www.serebii.net/swordshield/pokemon/${thisPokemon.pokedex_number}.png`} pokemon={thisPokemon} setIsOpen={setIsOpen} />}
+          {randomModal && <Modal picture={random[0].pokedex_number < 494 ? `https://serebii.net/pokearth/sprites/dp/${findPicture(random[0].pokedex_number)}.png` : `https://www.serebii.net/swordshield/pokemon/${random[0].pokedex_number}.png`} pokemon={random[0]} setIsOpen={setRandomModal} />}
           <Button name="previous-btn" handler={previous} title="Previous" />
           <Button name="next-btn" handler={next} title="Next" />
           </div>

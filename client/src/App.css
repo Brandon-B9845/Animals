@@ -37,7 +37,14 @@
 .nav li {
     display: inline;
     padding: 0 20px;
+    cursor: pointer;
+} 
+.nav li:hover {
+  color: rgb(95, 124, 183);
+  text-decoration: none;
 }
+
+
 
 .card-container{
     box-sizing: border-box;

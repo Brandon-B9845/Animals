@@ -5,6 +5,23 @@ const { Op } = require("sequelize");
 
 /* GET users listing. */
 
+router.post('/random', async function(req, res, next) {
+  let randomNumber = Math.floor(Math.random() * 801) + 1
+  console.log(randomNumber, "HERE")
+  
+  const test =  await db.Pokemon.findAll({
+    where: {
+      pokedex_number: randomNumber,
+    }, 
+    limit: 25,
+
+  })
+  res.send(test)
+
+  
+  
+});
+
 
 router.post('/defense_desc', async function(req, res, next) {
   let pageNumber = JSON.parse(Object.keys(req.body)[0])['page-number']
@@ -89,6 +106,9 @@ router.post('/legendary', async function(req, res, next) {
   let pageNumber = JSON.parse(Object.keys(req.body)[0])['page-number']
   let offSetNumber=  pageNumber * 25
   
+  let randomNumber = Math.floor(Math.random() * 801) + 1
+  console.group(randomNumber, "HERE")
+
   const test =  await db.Pokemon.findAll({
     where: {
       is_legendary: 1,
@@ -125,6 +145,9 @@ router.post('/*', async function(req, res, next) {
   let pageNumber = JSON.parse(Object.keys(req.body)[0])['page-number']
   let offSetNumber=  pageNumber * 25
   
+
+
+
   const test = await db.Pokemon.findAll({
     limit: 25,
     offset: offSetNumber

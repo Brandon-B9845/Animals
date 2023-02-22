@@ -10,7 +10,7 @@ function NavBar(props) {
                 <h2 className="header-title">Poke-mans</h2>
                 <ul className="nav">
                     <li><a href=".">Home</a></li>
-                    <li><a href="temporary">Random pokemon!</a></li>
+                    <li onClick={props.handler}>Random pokemon</li>
                     <li><a href="h123">About Us</a></li>
                 </ul>
             </header>
