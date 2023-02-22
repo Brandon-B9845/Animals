@@ -13,7 +13,7 @@ function Card(props) {
             <p>Attack: {props.attack}</p>
             <p>Defense: {props.defense}</p>
             <p>Generation: {props.gen}</p>
-            <button className="info-btn">More details...</button>
+            <button className="info-btn" onClick={props.handler}>More details...</button>
 
         </div>
 

@@ -3,6 +3,7 @@ import Card from './components/PokeCard';
 import NavBar from './components/NavBar';
 import Button from './components/Button';
 import Dropdown from './components/Dropdown';
+import Modal from './components/Modal';
 import UsePokemon from './hooks/UsePokemon';
 import UseLegendaries from './hooks/UseLegendaries';
 import UseAttackDesc from './hooks/UseAttackDesc';
@@ -16,6 +17,9 @@ import './App.css';
 
 
 function App() {
+ //Modal State:
+  const [isOpen, setIsOpen] = useState(false);
+  console.log(isOpen)
   // this is to track the page count which is sent back to the db to track what to display:
   const [pageCount, setPageCount] = useState(0)
 
@@ -88,18 +92,22 @@ function App() {
   return (
     <div className="App">
       <header>
-        <div>
+        <div className="btn-container">
           <NavBar />
-          {/* <button onClick={leggyBoyos}>AHHHH</button> */}
-          {/* <button onClick={"i"} >Click me</button> */}
+          <div>
           <Button name="previous-btn" handler={previous} title="Previous" />
           <Button name="next-btn" handler={next} title="Next" />
+          </div>
           <Dropdown  options={options} handleChange={handleChange}/>
           <p>You are on page {pageCount + 1}</p>
           <div className="wrapper">
-            {display ? display.map((poke) => <Card key={poke.pokedex_number} picture={poke.pokedex_number < 494 ? `https://serebii.net/pokearth/sprites/dp/${findPicture(poke.pokedex_number)}.png` : `https://www.serebii.net/swordshield/pokemon/${poke.pokedex_number}.png`} name={poke.name} type={poke.type1} attack={poke.attack} defense={poke.defense} gen={poke.generation} pokedex={poke.pokedex_number} />) : <p>Click the button</p>}
+            {display.map((poke) => <Card key={poke.pokedex_number} picture={poke.pokedex_number < 494 ? `https://serebii.net/pokearth/sprites/dp/${findPicture(poke.pokedex_number)}.png` : `https://www.serebii.net/swordshield/pokemon/${poke.pokedex_number}.png`} name={poke.name} type={poke.type1} attack={poke.attack} defense={poke.defense} gen={poke.generation} pokedex={poke.pokedex_number} handler={() => setIsOpen(true)} />) }
           </div>
-
+          <div className="btn-container">
+          {isOpen && <Modal setIsOpen={setIsOpen} />}
+          <Button name="previous-btn" handler={previous} title="Previous" />
+          <Button name="next-btn" handler={next} title="Next" />
+          </div>
         </div>
 
       </header>
