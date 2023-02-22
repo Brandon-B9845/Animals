@@ -2,7 +2,7 @@ import React from 'react';
 
 function Card(props) {
     // const [animalList, setAnimalList] = React.useState([])
-
+    
 
     return (
         <div className="card-container">
@@ -14,6 +14,7 @@ function Card(props) {
             <p>Defense: {props.defense}</p>
             <p>Generation: {props.gen}</p>
             <button className="info-btn" onClick={props.handler}>More details...</button>
+            
 
         </div>
 

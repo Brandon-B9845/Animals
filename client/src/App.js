@@ -19,10 +19,17 @@ import './App.css';
 function App() {
  //Modal State:
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen)
+
+  function information(obj){
+    console.log(obj)
+    setIsOpen(true)
+    setThisPokemon(obj)
+  }
+
   // this is to track the page count which is sent back to the db to track what to display:
   const [pageCount, setPageCount] = useState(0)
-
+  const [thisPokemon, setThisPokemon] = useState(0)
+  
   // these are the returns from our hooks to tell the app what to display:
   const { pokemon } = UsePokemon(pageCount);
   const { legendaries } = UseLegendaries(pageCount);
@@ -63,7 +70,7 @@ function App() {
   }else if (value === 'Type'){
     display = type
   }
-  console.log(value)
+  
 
   //this is to make sure that the picture url is rendering the correct picture:
   function findPicture(pokedex_number) {
@@ -88,6 +95,8 @@ function App() {
     }
   }
 
+
+
   // This is the actual rendering of the app:
   return (
     <div className="App">
@@ -101,10 +110,10 @@ function App() {
           <Dropdown  options={options} handleChange={handleChange}/>
           <p>You are on page {pageCount + 1}</p>
           <div className="wrapper">
-            {display.map((poke) => <Card key={poke.pokedex_number} picture={poke.pokedex_number < 494 ? `https://serebii.net/pokearth/sprites/dp/${findPicture(poke.pokedex_number)}.png` : `https://www.serebii.net/swordshield/pokemon/${poke.pokedex_number}.png`} name={poke.name} type={poke.type1} attack={poke.attack} defense={poke.defense} gen={poke.generation} pokedex={poke.pokedex_number} handler={() => setIsOpen(true)} />) }
+            {display.map((poke) => <Card key={poke.pokedex_number} picture={poke.pokedex_number < 494 ? `https://serebii.net/pokearth/sprites/dp/${findPicture(poke.pokedex_number)}.png` : `https://www.serebii.net/swordshield/pokemon/${poke.pokedex_number}.png`} name={poke.name} type={poke.type1} attack={poke.attack} defense={poke.defense} gen={poke.generation} pokedex={poke.pokedex_number} handler={() => information(poke)} />) }
           </div>
           <div className="btn-container">
-          {isOpen && <Modal setIsOpen={setIsOpen} />}
+          {isOpen && <Modal pokemon={thisPokemon} setIsOpen={setIsOpen} />}
           <Button name="previous-btn" handler={previous} title="Previous" />
           <Button name="next-btn" handler={next} title="Next" />
           </div>
