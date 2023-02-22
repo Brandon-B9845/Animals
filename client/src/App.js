@@ -113,7 +113,7 @@ function App() {
             {display.map((poke) => <Card key={poke.pokedex_number} picture={poke.pokedex_number < 494 ? `https://serebii.net/pokearth/sprites/dp/${findPicture(poke.pokedex_number)}.png` : `https://www.serebii.net/swordshield/pokemon/${poke.pokedex_number}.png`} name={poke.name} type={poke.type1} attack={poke.attack} defense={poke.defense} gen={poke.generation} pokedex={poke.pokedex_number} handler={() => information(poke)} />) }
           </div>
           <div className="btn-container">
-          {isOpen && <Modal pokemon={thisPokemon} setIsOpen={setIsOpen} />}
+          {isOpen && <Modal picture={thisPokemon.pokedex_number < 494 ? `https://serebii.net/pokearth/sprites/dp/${findPicture(thisPokemon.pokedex_number)}.png` : `https://www.serebii.net/swordshield/pokemon/${thisPokemon.pokedex_number}.png`} pokemon={thisPokemon} setIsOpen={setIsOpen} />}
           <Button name="previous-btn" handler={previous} title="Previous" />
           <Button name="next-btn" handler={next} title="Next" />
           </div>
