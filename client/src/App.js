@@ -57,6 +57,9 @@ function App() {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
+  // need to fix this long if statement
+  
   if (value === 'By number'){
     display = pokemon
   }
