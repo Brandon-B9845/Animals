@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 
 function Dropdown(props) {
 let key = 1
+// this is for the dropdown for filtering
 
     return (
         <div>

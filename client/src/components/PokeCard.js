@@ -1,7 +1,8 @@
 import React from 'react';
 
 function Card(props) {
-    // const [animalList, setAnimalList] = React.useState([])
+    
+    //This is out main cards prop
     
 
     return (
